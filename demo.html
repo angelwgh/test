@@ -195,10 +195,12 @@
     	
     	box.onmouseover=function(){
     		clearInterval(timer);
+    		jiantou.style.display="block";
     	}
     	box.onmouseout=function(){
     		
     		timer=setInterval(f,3000);
+    		jiantou.style.display="none";
     	}
     }
     
