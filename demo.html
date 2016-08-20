@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul{list-style: none}
+        *{margin:0; padding:0;}
+        .lunbo{
+            width: 1200px;
+            height: 400px;
+            margin:50px auto;
+            border:1px solid red;
+            overflow: hidden;
+            position: relative;
+        }
+        .lunbo li {
+            width: 1200px;
+            height: 400px;            
+        }
+        .lunbo ul {
+            width: 1300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #anniu{
+        	position: absolute;
+        	left: 50%;
+        	top: 360px;
+        	margin-left:-70px;
+        	
+        }
+        .anniu li{
+        	width: 20px;
+        	height: 20px;
+        	display: block;
+        	float: left;
+        	background-color: #fff;
+        	border-radius: 50%;
+        	margin-right: 10px;
+        }
+        #jiantou{
+        	position: absolute;
+        	left: 0;
+        	top: 50%;
+        	width: 1200px;
+        	display: none;
+        }
+        #jiantou div{
+        	background-color: rgba(188,188,188,.5);
+        	width: 50px;
+        	height: 80px;
+        	line-height: 80px;
+        	text-align: center;
+        	color: #fff;
+        	font-size: 30px;
+        	font-weight: 700;
+        	cursor: pointer;
+        	margin-top: -40px;
+        }
+        #left{
+        	float: left;
+        }
+        #right{
+        	float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="lunbo">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul class="anniu" id="anniu">
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ul>
+    <div id="jiantou">
+    	<div id="left"><</div>
+    	<div id="right">></div>
+    </div>
+</div>
+</body>
+</html>
+<!--<script src="animate.js"></script>-->
+<script>
+/*	function getStyle (obj,attr) {
+	if(obj.currentStyle){//ie等浏览器
+		return obj.currentStyle[attr];
+	}
+	else{
+		return window.getComputedStyle(obj,null)[attr];//其它w3c标准浏览器
+	}
+}*/
+
+    var box = document.getElementsByTagName("div")[0];
+    var lis = box.children[0].children;
+    /*accordion(lis,100,700,30);*/
+   /*console.log(lis);*/
+	/*console.log(getStyle(box,"width"));*/
+    lis[0].parentNode.style.width="10000px";
+    lis[0].parentNode.style.height="400px";
+    var jiantou=document.getElementById("jiantou");
+    
+    for(var i=0;i<lis.length;i++){
+		lis[i].style.backgroundImage="url(images/"+(i+1)+".jpg)";	
+	}
+    var lis_last=lis[0].cloneNode(true);
+    lis[0].parentNode.appendChild(lis_last);
+    for(var i=0;i<lis.length;i++){
+    	lis[i].style.float="left";
+    }
+    var timer=null;
+    var l=0;
+    var _lis=document.getElementById("anniu").getElementsByTagName("li");
+    /*console.log(_lis)*/
+   for(var j=0;j<_lis.length;j++){
+    	_lis[j].style.backgroundColor="yellow"
+    }
+   _lis[0].style.backgroundColor="pink";
+   for(var i=0;i<_lis.length;i++){
+    	_lis[i].index=i;
+    	_lis[i].onmouseover=function(){
+    		for(var j=0;j<_lis.length;j++){
+    			_lis[j].style.backgroundColor="yellow"
+    		}
+    		this.style.backgroundColor="pink";
+    		animate(lis[0].parentNode,{marginLeft:-this.index*1200},30);
+    	}
+    }
+   var left=document.getElementById("left");
+   var right=document.getElementById("right");
+   left.onclick=function(){
+   		var n=parseInt(-parseInt(getStyle(lis[0].parentNode,"marginLeft"))/1200);
+   		if(n==0){
+   			lis[0].parentNode.style.marginLeft=-(lis.length-1)*1200+"px"
+   			n=lis.length-1;
+   		}
+   		animate(lis[0].parentNode,{marginLeft:-(n-1)*1200},30);
+   		for(var j=0;j<_lis.length;j++){
+    			_lis[j].style.backgroundColor="yellow"
+    		}
+   		_lis[n-1].style.backgroundColor="pink";
+   }
+ 	right.onclick=function(){
+   		var n=Math.ceil(-parseInt(getStyle(lis[0].parentNode,"marginLeft"))/1200);
+   		/*console.log(n);
+   		console.log(lis.length);*/
+   		if(n==lis.length-1){
+   			lis[0].parentNode.style.marginLeft=0;
+   			n=0;
+   		}
+/*   		console.log(lis[0].parentNode.style.marginLeft);
+   		console.log(n);*/
+   		animate(lis[0].parentNode,{marginLeft:-(n+1)*1200},30);
+   		for(var j=0;j<_lis.length;j++){
+    			_lis[j].style.backgroundColor="yellow"
+    		}
+   		n==_lis.length-1?n=0:n+=1;
+   		_lis[n].style.backgroundColor="pink";
+   	}
+   box.onmouseover=function(){
+    		clearInterval(timer);
+    		jiantou.style.display="block";
+    	}	
+    box.onmouseout=function(){
+    		
+    		timer=setInterval(f,3000);
+    		jiantou.style.display="none";
+    	}	
+    timer=setInterval(f,3000)
+    function f(){
+    	l=parseInt(parseInt(getStyle(lis[0].parentNode,"marginLeft")))-1200;
+    	if(l<=-(lis.length)*1200){
+    		lis[0].parentNode.style.marginLeft=0;
+    		l=-1200;
+    	}
+    	var n=parseInt(-parseInt(getStyle(lis[0].parentNode,"marginLeft"))/1200);
+    	for(var i=0;i<_lis.length;i++){
+    		_lis[i].style.backgroundColor="yellow";
+    		_lis[i].index=i;
+    		
+    	}
+    	n==_lis.length-1?n=0:n+=1;
+    	_lis[n].style.backgroundColor="pink";
+    	animate(lis[0].parentNode,{marginLeft:l},30);
+    	
+    	box.onmouseover=function(){
+    		clearInterval(timer);
+    	}
+    	box.onmouseout=function(){
+    		
+    		timer=setInterval(f,3000);
+    	}
+    }
+    
+    
+    /*function accordion (lis,s_with,l_with,speed) {
+    	for(var i=0;i<lis.length;i++){
+			lis[i].style.backgroundImage="url(images/"+(i+1)+".jpg)";
+			lis[i].style.top=0;
+			lis[i].style.position="absolute";
+			if(i==0){
+				lis[i].style.left=0;
+			}else{
+				lis[i].style.left=i*s_with+l_with+"px";
+			}//初始化数据
+		}
+		for(var i=0;i<lis.length;i++){
+			lis[i].index=i;
+			lis[i].onmouseover=function(){
+				for (var i=0;i<=this.index;i++) {
+				animate	(lis[i],{left:s_with*i},speed)						
+				}
+				for(var i=this.index+1;i<lis.length;i++){
+					animate(lis[i],{left:s_with*i+l_with},speed)
+				}
+				
+			}
+		}
+    }*/
+	
+
+	function getStyle (obj,attr) {
+	if(obj.currentStyle){//ie等浏览器
+		return obj.currentStyle[attr];
+	}
+	else{
+		return window.getComputedStyle(obj,null)[attr];//其它w3c标准浏览器
+	}
+}
+	
+	function animate(obj,json,spead,fn){
+		clearInterval(obj.timer);//清除定时器
+		obj.timer=setInterval(function(){//打开定时器
+			var flag=true;//设置定时器开关
+			for(var attr in json){//遍历json对象
+				var current=0;
+				if(attr=="opacity"){
+					current=parseInt(getStyle(obj,attr)*100)||0;
+				}
+				else{
+					current=parseInt(getStyle(obj,attr)); //获取当前属性
+				}
+				
+				var step=(json[attr]-current)/10;
+				step=step>0?Math.ceil(step):Math.floor(step);//计算步长
+				if(attr=="opacity"){//如果属性是透明度
+					if("opacity" in obj.style){//支持opacity的浏览器
+						obj.style.opacity=(current+step)/100;
+					}
+					else{//ie678
+						obj.style.filter="alpha(opacity="+(current+step)*10+")";
+					}
+				}else if(attr=="zIndex"){
+					obj.style.zIndex=json[attr];
+				}
+				else{
+				obj.style[attr]=current+step+"px";//修改属性
+				}
+				if(current!=json[attr]){
+					flag=false;//只要有一个不符合条件，就不停止定时器
+				}
+			}
+			if(flag){//判断定时器停止的条件
+				clearInterval(obj.timer);
+				if(fn){
+					fn();//回调函数
+				}
+			}
+		},spead)
+}
+</script>
