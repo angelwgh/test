@@ -1,0 +1,20 @@
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar-brand">本地联系后台管理</div>
+	<ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" ng-class="{'open':data.show_top_dropdown}" style="margin-right: 30px;">
+          <a href="javascript:void(0)" ng-click="data.show_top_dropdown = !data.show_top_dropdown">
+            <img class="img-circle" ng-src="b{{'/mfs'+basic_data.user_info.headImg}}">
+            b{{basic_data.user_info.name}} 
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">个人中心</a></li>
+            <li><a href="#">修改密码</a></li>
+            
+            <li role="separator" class="divider"></li>
+            <li><a href="javascript:void(0)" ng-click="events.loginOut()"><span
+                        class="ico ico-tuichu"></span>注销</a></li>
+
+          </ul>
+        </li>
+    </ul>
+</div>
