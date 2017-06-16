@@ -1,36 +1,36 @@
 <div class="side-bar">
 	<div class="side-bar-scroll">
 		<ul class="nav">
-			<li class="layer-1 active">
-				<a href="#">
+			<li class="layer-1"
+				ng-class="{'active':(data.active == 'states.home')}">
+				<a href="javascript:void(0)" ng-click="events.menuClick()">
 					<i class="glyphicon glyphicon-home"></i>
 					<span>首页</span>
 				</a>
+				
 			</li>
-			<li class="layer-1" ng-repeat="item in basic_data.menu_list">
-				<a href="#">
+			<li class="layer-1" 
+				ng-repeat="item in basic_data.menu_list"
+				ng-class="{'active':(data.active == item.state)}">
+				<a href="javascript:void(0)" ng-click="events.menuClick($event,item)">
 					<i class="glyphicon" ng-class="item.icon"></i>
 					<span>b{{item.name}}</span>
+					<i class="show-ico" 
+					   ng-if="item.subs && item.subs.length>0"
+					   ng-class="{'showsub':item.isSubShow}"></i>
 				</a>
+				<ul class="sub-nav" ng-if="item.isSubShow || (data.active == item.state)">
+
+					<li class="layer-2" ng-repeat="sub in item.subs"
+					ng-class="{'active':(data.subActive == sub.state)}">
+						<a href="javascript:void(0)" ng-click="events.menuClick($event,sub)" >
+							<span class="ico"></span>
+							<span>b{{sub.name}}</span>
+						</a>
+						
+					</li>
+				</ul>
 			</li>
-			<!-- <li>
-				<a href="#">
-					<i class="glyphicon glyphicon-edit"></i>
-					<span>广告管理</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class="glyphicon glyphicon-user"></i>
-					<span>个人中心</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class="glyphicon glyphicon-comment"></i>
-					<span>意见反馈</span>
-				</a>
-			</li> -->
 		</ul>
 	</div>
 </div>

@@ -4,16 +4,20 @@
  *             --->angelwgh
  * @日期     2017-06-07
  */
-define(['angular','md5','angularCookies'],function (angular,md5) {
+define(['angular','md5','cookie'],function (angular,md5,cookie) {
 	'use strict';
-	var home = angular.module('app.home',['ngCookies']);
+	var home = angular.module('app.home',[]);
 
-	home.factory('getCookiesInfo', ['$cookies', function($cookies){
+	home.factory('getCookiesInfo',  function(){
 		return function (data) {
+			console.log(cookie.get(data.cruuent+'_remember'))
 			//如果cookies中有帐号信息,读取cookie中的用户名和密码
-			if($cookies[data.cruuent+'_remember']){
-				data.username = $cookies[data.cruuent+'_username'];
-				data.password = $cookies[data.cruuent+'_password'];
+			if(cookie.get(data.cruuent+'_remember')){
+				//data.username = $cookies[data.cruuent+'_username'];
+				//data.password = $cookies[data.cruuent+'_password'];
+				//data.remember = true;
+				data.username = cookie.get(data.cruuent+'_username');
+				data.password = cookie.get(data.cruuent+'_password');
 				data.remember = true;
 			}else{
 				data.username = null;
@@ -24,14 +28,13 @@ define(['angular','md5','angularCookies'],function (angular,md5) {
 			
 			//console.log(data)
 		}
-	}]);
+	});
 
 	home.controller('homeController', [
 		'$scope',
-		'$cookies',
 		'getCookiesInfo',
 		'$http',
-		function($scope,$cookies,getCookiesInfo,$http){
+		function($scope,getCookiesInfo,$http){
 		$scope.account_info={
 			account_type:'1',
 			cruuent:'normal',
@@ -65,13 +68,23 @@ define(['angular','md5','angularCookies'],function (angular,md5) {
 
 				//判断是否保存cookies
 				if($scope.account_info.remember){
-					$cookies[$scope.account_info.cruuent+'_username'] = $scope.account_info.username;
+					var d = (new Date("2018/1/6 11:44:30")).toGMTString();
+					/*$cookies[$scope.account_info.cruuent+'_username'] = $scope.account_info.username
+					console.dir($cookies)
 					$cookies[$scope.account_info.cruuent+'_password'] = $scope.account_info.password;
-					$cookies[$scope.account_info.cruuent+'_remember'] = $scope.account_info.remember;
+					$cookies[$scope.account_info.cruuent+'_remember'] = $scope.account_info.remember;*/
+					cookie.set($scope.account_info.cruuent+'_username',$scope.account_info.username,{expires: d});
+					cookie.set($scope.account_info.cruuent+'_password',$scope.account_info.password,{expires: d});
+					cookie.set($scope.account_info.cruuent+'_remember',$scope.account_info.remember,{expires: d});
 				}else{
-					delete $cookies[$scope.account_info.cruuent+'_username'];
+					//删除cookie
+					cookie.expire($scope.account_info.cruuent+'_username');
+					cookie.expire($scope.account_info.cruuent+'_password');
+					cookie.expire($scope.account_info.cruuent+'_remember');
+
+					/*delete $cookies[$scope.account_info.cruuent+'_username'];
 					delete $cookies[$scope.account_info.cruuent+'_password'];
-					delete $cookies[$scope.account_info.cruuent+'_remember'];
+					delete $cookies[$scope.account_info.cruuent+'_remember'];*/
 				}
 
 				//console.log(md5($scope.account_info.password))

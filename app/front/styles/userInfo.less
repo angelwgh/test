@@ -1,0 +1,48 @@
+.m-user-info{
+	.user-info{
+		position: relative;
+		.head-Img{
+			position: absolute;
+		    top: 70px;
+		    left: 20px;
+		    width: 200px;
+		    height: 200px;
+		    border: 1px solid #ccc;
+		    box-shadow: 2px 2px 5px 0px #ccc;
+
+			border:1px solid #ccc;
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.head-Img::after{
+			content: '';
+		    position: absolute;
+		    top: -25px;
+		    right: -50px;
+		    width: 1px;
+		    height: 130%;
+
+		}
+
+		.info{
+			margin-left: 300px;
+			td{
+				border-top: none;
+			}
+			.left-text{
+				padding-right: 20px;
+				width: 150px;
+				text-align: right;
+			}
+
+			.radio{
+				label{
+					padding-left: 40px
+				}
+			} 
+		}
+	}
+}

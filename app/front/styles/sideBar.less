@@ -1,5 +1,6 @@
 .side-bar{
 	position: fixed;
+	z-index: 999;
 	top: 80px;
 	left: 0;
 	bottom: 0;
@@ -8,8 +9,57 @@
 	overflow: auto;	
 	
 	.layer-1{
+		position: relative;
 		padding:5px 18px;
+		a{
+			transition:0.2s;
+
+			.show-ico{
+				width: 14px;
+			    height: 14px;
+			    display: inline-block;
+			    background: url(../images/web-icons.png) no-repeat -70px -40px;
+			    position: absolute;
+			    top: 13px;
+			    right: 20px
+			}
+			.show-ico.showsub{
+				background-position: -70px -54px;
+			}
+		}
+		a:focus{
+			background-color: transparent;
+		}
+
+	}
+	
+	.layer-2{
+		position:relative;
+
+		a{
+			height: 35px;
+		    line-height: 35px;
+		    margin-left: 20px;
+		    padding-left: 40px;
+		    display: block;
+		    position: relative;
+		}
+		.ico{
+			width: 30px;
+		    height: 35px;
+		    background-position: -70px -130px;
+		    position: absolute;
+		    top: 0;
+		    left: 5px;
+		    background-image: url(../images/web-icons.png)
+		}
 	}
 
+	.layer-2:last-child{
+		.ico{
+			background-position: -70px -165px;
+		}
+		
+	}
 	
 }

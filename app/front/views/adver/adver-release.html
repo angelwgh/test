@@ -1,0 +1,98 @@
+<div class="adver-release" ng-click="events.hideCategorysList($event)">
+  <form class="form-horizontal" name="adver_form" novalidate>
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':adver_form.title.$dirty && adver_form.title.$valid,'has-error':adver_form.title.$dirty && adver_form.title.$invalid}"
+    >
+      <label class="col-xs-4 control-label text-right">请输入宣传广告语：</label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control"
+               name="title"
+               ng-model="release_data.title"
+               required
+               placeholder="请输入宣传广告语">
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.title.$dirty && adver_form.title.$valid"
+        ></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.title.$dirty && adver_form.title.$invalid"
+        ></span>
+      </div>
+    </div>
+
+    <div class="form-group has-feedback" 
+         ng-class="{'has-success':adver_form.url.$dirty && adver_form.url.$valid,'has-error':adver_form.url.$dirty && adver_form.url.$invalid}">
+      <label class="col-xs-4 control-label text-right">请输入宣传的网址：</label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" 
+               name="url"
+               ng-model="release_data.url"
+               required
+               placeholder="请输入宣传的网址">
+         <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.url.$dirty && adver_form.url.$valid"
+        ></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.url.$dirty && adver_form.url.$invalid"
+        ></span>
+      </div>
+    </div>
+    
+    <div class="form-group  has-feedback"
+         ng-class="{'has-success':adver_form.category.$dirty && adver_form.category.$valid,'has-error':adver_form.category.$dirty && adver_form.category.$invalid}">
+      <label class="col-xs-4 control-label text-right">选择类目：</label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" 
+               gh-readonly 
+               name="category"
+               ng-click="events.getCategorysList($event)"
+               ng-model="release_data.active_category.name"
+               placeholder="请选择类目"
+               required
+               ng-blur="events.categoryBlur($event)">
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.category.$dirty && adver_form.category.$valid"
+        ></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
+              ng-show="adver_form.category.$dirty && adver_form.category.$invalid"
+        ></span>
+        <div class="m-list-tree" ng-if="release_data.category_show">
+          <list-tree model="release_data.categorys" 
+                     active="release_data.active_category"></list-tree>
+        </div>
+      </div>
+      
+    </div>
+    <div class="form-group has-feedback"
+        ng-class="{'has-success':release_data.isImgUploaded}"
+    >
+      <label class="col-xs-4 control-label text-right">选择广告图片：</label>
+      <div class="col-xs-8">
+        <upload-single-img model="release_data.files"></upload-single-img>
+      </div>
+      
+      
+    </div>
+    <div class="form-group">
+    <div class="col-xs-4">
+     
+    </div >
+    <div class="col-xs-4">
+      <button type="submit" class="btn btn-primary btn-block"
+              ng-click="events.submit($event)"
+              ng-disabled="adver_form.$invalid || !release_data.isImgUploaded"
+              ng-if="adver_data.upload == 'add'">
+              上传广告
+      </button>
+      <button type="submit" class="btn btn-primary btn-block"
+              ng-click="events.modifyAdevr($event)"
+              ng-disabled="adver_form.$invalid || !release_data.isImgUploaded"
+              ng-if="adver_data.upload == 'modify'">
+              修改广告
+      </button>
+    </div >
+    <div class="col-xs-4">
+          <span ng-if="release_data.upload_result.state=='1'">b{{release_data.upload_result.msg}}</span>
+    </div>
+    </div >
+  </form>
+</div>

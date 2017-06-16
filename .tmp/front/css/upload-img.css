@@ -1,0 +1,23 @@
+.m-upload-img input[type="file"] {
+  display: none;
+}
+.m-upload-img .thum-img {
+  margin-top: 10px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  min-height: 84px;
+  background-color: #f5f5f5;
+}
+.m-upload-img .thum-img .img {
+  width: 200px;
+  height: 64px;
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 0px 0 #ccc;
+  text-align: center;
+}
+.m-upload-img .thum-img .img img {
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}

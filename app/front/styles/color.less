@@ -1,28 +1,88 @@
 /**
  * 颜色样式
  */
+
+/*列表树样式*/
+.m-list-tree{
+
+    border-color: #03a9f4;
+
+
+    .layer-1-item{
+    	
+    	h4{
+			border-color: #ECE8E8;
+
+		  
+    	}
+
+    	.icon{
+		    color: #03a9f4;
+    	}
+    }
+
+    .layer-2-item{
+    	border-color: #03a9f4;
+    }
+
+    .layer-2-item:hover{
+    	background-color: #03a9f4;
+    	color:#fff;
+
+    }
+    .layer-2-item.active{
+    	background-color: #03a9f4;
+    	color:#fff;
+    }
+}
+
+//左侧菜单
 .side-bar{
 	background-color: #2B333E;
 	.layer-1.active{
+		background-color: #1d2229;
 		a,
+
 		a:hover{	
 			color: #fff;
-			background-color:#ff9800
+		}
+
+		a:focus{
+			background-color: transparent;
 		}
 	}
 	.layer-1{
 		a{
 			color: #fff;
-			transition:0.2s;
 		}
 		a:hover{
-			background-color: #4caf50;
+			background-color: #1d2229;
+		}
+
+		.layer-2{
+			a{
+				background-color: transparent;
+			}
+			
+			a:hover{
+				transition:0.6s;
+				color: #3ca2e2
+			}
+
+			
+		}
+		.layer-2.active{
+			a{
+				color: #3ca2e2
+			}
 		}
 	}
+
+
 }
 
 
-
+//主页
 .m-home-page{
 	.menu-list{
 		li{
@@ -43,5 +103,40 @@
 			background-color: #de566e;
 		}
 
+	}
+}
+
+/**
+ * 广告管理
+ */
+.m-adver{
+	.title{
+		color: #fff;
+		background-color: #06d995;
+	}
+
+	.adver-list{
+		.adver{
+			border-color: #ccc;
+			img{
+				width: 100%
+			}
+		}
+	}
+}
+
+/**
+ * 个人中心
+ */
+
+.m-user-info{
+	.user-info{
+		.head-Img{
+		    border-color: #ccc;
+		}
+
+		.head-Img::after{
+			background-color: #ccc;
+		}
 	}
 }

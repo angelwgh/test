@@ -63,6 +63,7 @@ module.exports=function (grunt) {
 			proxies: [
 				{
                     context: '/FxbManager',
+                    //host: '192.168.88.199',
                     host: '192.168.88.110',
                     //host: '192.168.1.97',
                     port: 8080,

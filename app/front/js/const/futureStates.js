@@ -7,6 +7,16 @@ define(function(){
  				"stateName":"states.userInfo",
  				"url":"/userInfo","type":"ocLazyLoad"
  			},
+ 			{
+ 				"module":"app.states.adver",
+ 				"stateName":"states.adver",
+ 				"url":"/adver","type":"ocLazyLoad"
+ 			},
+ 			{
+ 				"module":"app.states.advice",
+ 				"stateName":"states.advice",
+ 				"url":"/advice","type":"ocLazyLoad"
+ 			},
  			/*{
  				"module":"app.states.courseDetail",
  				"stateName":"states.courseDetail",

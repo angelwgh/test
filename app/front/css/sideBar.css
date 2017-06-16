@@ -1,5 +1,6 @@
 .side-bar {
   position: fixed;
+  z-index: 999;
   top: 80px;
   left: 0;
   bottom: 0;
@@ -8,5 +9,48 @@
   overflow: auto;
 }
 .side-bar .layer-1 {
+  position: relative;
   padding: 5px 18px;
+}
+.side-bar .layer-1 a {
+  -webkit-transition: 0.2s;
+          transition: 0.2s;
+}
+.side-bar .layer-1 a .show-ico {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: url(../images/web-icons.png) no-repeat -70px -40px;
+  position: absolute;
+  top: 13px;
+  right: 20px;
+}
+.side-bar .layer-1 a .show-ico.showsub {
+  background-position: -70px -54px;
+}
+.side-bar .layer-1 a:focus {
+  background-color: transparent;
+}
+.side-bar .layer-2 {
+  position: relative;
+}
+.side-bar .layer-2 a {
+  height: 35px;
+  line-height: 35px;
+  margin-left: 20px;
+  padding-left: 40px;
+  display: block;
+  position: relative;
+}
+.side-bar .layer-2 .ico {
+  width: 30px;
+  height: 35px;
+  background-position: -70px -130px;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  background-image: url(../images/web-icons.png);
+}
+.side-bar .layer-2:last-child .ico {
+  background-position: -70px -165px;
 }

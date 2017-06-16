@@ -1,7 +1,7 @@
 <div class="m-home-page">
 	<div class="menu-list">
 		<ul class="nav">
-			<li ng-repeat="item in basic_data.menu_list" class="animated zoomIn" ng-click="events.stateGo(item)">
+			<li ng-repeat="item in basic_data.menu_list" class="animated zoomIn" ng-click="events.statesGo($event,item)">
 				<div class="defalt">
 					<i class="glyphicon" ng-class="item.icon"></i>
 					<span>b{{item.name}}</span>

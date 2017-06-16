@@ -18,6 +18,7 @@ require.config ({
 		angularSanitize: '../../../bower_components/angular-sanitize/angular-sanitize',
 		angularTouch: '../../../bower_components/angular-touch/angular-touch',
 		angularUiRouter: '../../../bower_components/angular-ui-router/release/angular-ui-router',
+		angularBootstrap:'../../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
 		restangular: '../../../bower_components/restangular/dist/restangular',
 		bootstrap: '../../../bower_components/bootstrap/dist/js/bootstrap',
 		jquery: '../../../bower_components/jquery/dist/jquery',
@@ -49,6 +50,7 @@ require.config ({
 		angularMocks: {deps: ['angular'], exports: 'angularMock'},
 		angularUiRouter: {deps: ['angular'], exports: 'angularUiRouter'},
 		uiRouterExtras: {deps: ['angularUiRouter'], exports: 'uiRouterExtras'},
+		angularBootstrap:{deps: ['angular'], exports: 'angularBootstrap'},
 		d3: {exports: 'd3'},
 		lodash: {exports: '_'},
 		app: {deps: ['angular'], exports: 'app'},
@@ -62,5 +64,6 @@ require(['angular','app'],function (angular) {
 	'use strict';
 	//手动设置app边界
 	var html = angular.element (document.getElementsByTagName ('html')[0]);
+	//console.log(angular.bootstrap)
 	angular.bootstrap (html, ['app']);
 })

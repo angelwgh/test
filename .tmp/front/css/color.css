@@ -1,20 +1,55 @@
 /**
  * 颜色样式
  */
+/*列表树样式*/
+.m-list-tree {
+  border-color: #03a9f4;
+}
+.m-list-tree .layer-1-item h4 {
+  border-color: #ECE8E8;
+}
+.m-list-tree .layer-1-item .icon {
+  color: #03a9f4;
+}
+.m-list-tree .layer-2-item {
+  border-color: #03a9f4;
+}
+.m-list-tree .layer-2-item:hover {
+  background-color: #03a9f4;
+  color: #fff;
+}
+.m-list-tree .layer-2-item.active {
+  background-color: #03a9f4;
+  color: #fff;
+}
 .side-bar {
   background-color: #2B333E;
+}
+.side-bar .layer-1.active {
+  background-color: #1d2229;
 }
 .side-bar .layer-1.active a,
 .side-bar .layer-1.active a:hover {
   color: #fff;
-  background-color: #ff9800;
+}
+.side-bar .layer-1.active a:focus {
+  background-color: transparent;
 }
 .side-bar .layer-1 a {
   color: #fff;
-  transition: 0.2s;
 }
 .side-bar .layer-1 a:hover {
-  background-color: #4caf50;
+  background-color: #1d2229;
+}
+.side-bar .layer-1 .layer-2 a {
+  background-color: transparent;
+}
+.side-bar .layer-1 .layer-2 a:hover {
+  transition: 0.6s;
+  color: #3ca2e2;
+}
+.side-bar .layer-1 .layer-2.active a {
+  color: #3ca2e2;
 }
 .m-home-page .menu-list li .bgc {
   background-color: #000;
@@ -27,4 +62,26 @@
 }
 .m-home-page .menu-list li:nth-of-type(3) {
   background-color: #de566e;
+}
+/**
+ * 广告管理
+ */
+.m-adver .title {
+  color: #fff;
+  background-color: #06d995;
+}
+.m-adver .adver-list .adver {
+  border-color: #ccc;
+}
+.m-adver .adver-list .adver img {
+  width: 100%;
+}
+/**
+ * 个人中心
+ */
+.m-user-info .user-info .head-Img {
+  border-color: #ccc;
+}
+.m-user-info .user-info .head-Img::after {
+  background-color: #ccc;
 }

@@ -1,0 +1,40 @@
+<div class="m-upload-img">
+	<input type="file">
+	<input type="button" class="btn btn-success" value="选择图片"
+		   ng-click="events.selectImg()">
+    <input type="button" class="btn btn-info" value="上传图片" 
+           ng-click="events.uploadimg($event)" 
+           ng-disabled="msgs.size_err || msgs.type_err || !msgs.has_files">
+           <span class="alert alert-info"
+           		 ng-if="!msgs.has_files">
+           		b{{msgs.default}}
+           </span>
+           <span class="alert alert-danger"
+           		 ng-if="msgs.type_err && msgs.has_files">
+           		 <i class="glyphicon glyphicon-remove"></i>
+           		b{{msgs.type_err_msg}}
+           </span>
+           <span class="alert alert-danger"
+           		 ng-if="!msgs.type_err && msgs.size_err && msgs.has_files">
+           		 <i class="glyphicon glyphicon-remove"></i>
+           		b{{msgs.size_err_msg}}
+           </span>
+           <span class="alert alert-success"
+				 ng-if="msgs.has_files && !msgs.size_err && !msgs.type_err && !msgs.success"
+           >
+           		<i class="glyphicon glyphicon-ok"></i>
+           		点击上传
+           </span>
+           <span class="alert alert-success"
+				 ng-if="msgs.has_files && !msgs.size_err && !msgs.type_err && msgs.success"
+           >
+           		<i class="glyphicon glyphicon-ok"></i>
+           		已上传
+           </span>
+	<ul class="thum-img clearfix" >
+		<li class="img" ng-repeat="file in model.files">
+			<img ng-src="b{{file.src}}">
+		</li>
+	</ul>
+
+</div>

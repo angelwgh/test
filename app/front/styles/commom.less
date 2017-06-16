@@ -1,10 +1,16 @@
+body{
+	min-width: 960px;
+}
 ul,ol{
 	padding: 0;
 	li{
 		list-style: none;
 	}
 }
-
+a:hover,
+a:focus{
+	text-decoration: none;
+}
 .navbar{
 	img{
 		width: 40px;
@@ -13,6 +19,54 @@ ul,ol{
 .main{
 	margin-top: 80px;
 	margin-left: 260px;
+}
+
+/*列表树样式*/
+.m-list-tree{
+	position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1;
+    width: 100%;
+    border: 1px solid;
+    padding: 10px;
+    max-height: 200px;
+    overflow: auto;
+    background-color: #fff;
+
+    .layer-1-item{
+    	position: relative;
+    	h4{
+    		cursor: default;
+    		padding: 5px 20px;
+		    margin: 10px 0;
+		    border-bottom: 1px solid;
+		    transition: 0.2s;
+		    -webkit-transition: 0.2s;
+    	}
+
+    	.icon{
+    		position: absolute;
+		    top: 8px;
+		    left: 0px;
+    	}
+    }
+
+    .layer-2-item{
+    	float: left;
+    	margin: 5px;
+    	padding: 5px 10px;
+    	border:1px solid;
+    	border-radius: 5px;
+    	cursor: default;
+    	transition: 0.2s;
+		-webkit-transition: 0.2s;
+    }
+
+    .layer-2-item:hover{
+    	transform:scale(1.2)
+    }
+
 }
 
 .m-home-page{
@@ -72,5 +126,69 @@ ul,ol{
 				transform:scale(1);
 			}
 		}
+	}
+}
+
+/**
+ * 广告管理
+ */
+
+.m-adver{
+	.title{
+		padding: 10px 0;
+		border-radius: 5px;
+	}
+
+	.adver-list{
+		.adver{
+			position: relative;
+			float: left;
+			margin: 10px;
+			padding: 2px;
+			width: 250px;
+			border: 1px solid;
+			img{
+				width: 100%
+			}
+
+			.cont{
+				div{
+					padding-left: 5px;
+					height: 25px;
+					line-height: 25px;
+					font-size: 12px;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow:ellipsis;
+				}
+			}
+			.delete,
+			.edit{
+				width: 25px;
+			    height: 25px;
+			    line-height: 25px;
+			    text-align: center;
+			    color: #fff;
+			    background-color: #f66985;
+			    position: absolute;
+			    top: 5px;
+			    right: 35px;
+			    cursor: pointer;
+			}
+			.edit{
+				right:5px;
+			}
+		}
+		
+
+		.adver:hover{
+			-webkit-box-shadow: 0 0 7px #ccc;
+    		box-shadow: 0 0 7px #ccc;
+		}
+	}
+
+	.adver-release{
+		padding: 30px;
+    	border: 1px solid #ccc;
 	}
 }

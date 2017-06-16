@@ -5,7 +5,17 @@ define(function(){
 			{
 				"reconfig":true,
 				"name":"app.states.userInfo",
-				"files":["states/userInfo-state"]
+				"files":["states/userInfo-states"]
+			},
+			{
+				"reconfig":true,
+				"name":"app.states.adver",
+				"files":["states/adver-states"]
+			},
+			{
+				"reconfig":true,
+				"name":"app.states.advice",
+				"files":["states/advice-states"]
 			},
 			/*{
 				"reconfig":true,

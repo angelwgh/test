@@ -1,0 +1,26 @@
+<ul class="adver-list clearfix">
+	<li class="adver" ng-repeat="adver in finish_advers.adver_list">
+		<img ng-src="b{{'/mfs'+adver.imagePath}}">
+		<span class="edit"
+			  ng-if="adver_data.permissions.modify"
+			  ng-click="events.modifyBeforeAdvert($event,adver)">修</span>
+		<span class="delete"
+			  ng-if="adver_data.permissions.delete"
+			  ng-click="events.delete($event,adver)">删</span>
+		<div class="cont">
+			<div>有效起止时间: b{{adver.effTime}}</div>
+			<div>广告语: b{{adver.title}}</div>
+			<div>链接地址: b{{adver.url}}</div>
+			<div>当前状态: 
+				<span class="label"
+					  ng-class="{'label-success':(adver.status=='1'),'label-danger':(adver.status=='0')}">b{{adver.status=='1'?'已通过审核':'未审核'}}</span>
+			</div>
+			<div>
+				<span>
+					点击数: <span style="color: red;">b{{adver.realClick}}</span>
+					浏览量: <span style="color: red;">b{{adver.viewNum}}</span>
+				</span>
+			</div>
+		</div>
+	</li>	
+</ul>
