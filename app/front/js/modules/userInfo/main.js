@@ -5,10 +5,11 @@ define([
 		'modules/userInfo/controllers/userInfo-info',
 		'modules/userInfo/controllers/userInfo-headImg',
 		'modules/userInfo/controllers/userInfo-password',
-		'angularBootstrap'
+		
 	],
 	function(angular,userInfoServices,userInfoBasic,userInfoInfo,userInfoHeadImg,userInfoPassword){
 		'use strict';
+
 		return angular.module('app.userInfo', [])
 
 		.factory('userInfoServices', userInfoServices)

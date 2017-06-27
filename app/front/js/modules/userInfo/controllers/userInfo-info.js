@@ -28,6 +28,23 @@ define(function () {
 				updateUserInfo:function (e) {
 					e.stopPropagation();
 					console.log($scope.modify_data)
+					var modify = {
+						name:$scope.modify_data.name,
+						sex:$scope.modify_data.sex,
+                        tell:$scope.modify_data.tel,
+                        keyWord:$scope.modify_data.keyWord,
+                        card:$scope.modify_data.card
+					}
+					userInfoServices.updateUserInfo(modify).then(function (data) {
+						console.log(data)
+						if(data.state == 1){
+							modalfix.ok({
+								msg:'修改成功!'
+							});
+							$scope.basic_events.getUserInfo()
+						}
+						
+					})
 	                //return baseUrl.one('updateUserInfo').get(data)
 	            },
 			}

@@ -17,6 +17,11 @@ define(function(){
 				"name":"app.states.advice",
 				"files":["states/advice-states"]
 			},
+			{
+				"reconfig":true,
+				"name":"app.states.contacts",
+				"files":["states/contacts-states"]
+			},
 			/*{
 				"reconfig":true,
 				"name":"app.states.courseDetail",

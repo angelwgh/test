@@ -1,5 +1,6 @@
 body{
 	min-width: 960px;
+	font-family:"Microsoft Yahei","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 ul,ol{
 	padding: 0;
@@ -11,6 +12,13 @@ a:hover,
 a:focus{
 	text-decoration: none;
 }
+
+textarea{
+		resize: none;
+	}
+textarea:focus{
+	outline: none;
+}
 .navbar{
 	img{
 		width: 40px;
@@ -19,6 +27,25 @@ a:focus{
 .main{
 	margin-top: 80px;
 	margin-left: 260px;
+}
+
+/**
+ *顶部工具条样式
+ */
+.top-bar{
+	padding: 20px;
+    border-width: 0;
+
+
+    input[type="text"]{
+    	width: 300px;
+    	vertical-align: middle;
+    	display: inline-block;
+    }
+    button{
+    	width: 100px;
+    	margin: 0 20px;
+    }
 }
 
 /*列表树样式*/

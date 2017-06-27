@@ -20,6 +20,22 @@ a:focus {
   margin-top: 80px;
   margin-left: 260px;
 }
+/**
+ *顶部工具条样式
+ */
+.top-bar {
+  padding: 20px;
+  border-width: 0;
+}
+.top-bar input[type="text"] {
+  width: 300px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.top-bar button {
+  width: 100px;
+  margin: 0 20px;
+}
 /*列表树样式*/
 .m-list-tree {
   position: absolute;

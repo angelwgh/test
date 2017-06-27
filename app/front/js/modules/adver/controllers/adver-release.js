@@ -113,9 +113,10 @@ define(function () {
 				adverServices.uploadAdver(adver).then(function (data) {
 					console.log(data)
 
-					modalfix.ok({
+					modalfix.confirm({
 						msg:data.msg,
 						confirmFn:function () {
+							console.log(1)
 							$state.reload('states.adver.release')
 						}
 					})
@@ -143,7 +144,7 @@ define(function () {
                 adver.categoryid = $scope.release_data.active_category.id;
 
                 adverServices.modifyAdver(adver).then(function (data) {
-                	modalfix.ok({
+                	modalfix.confirm({
 						msg:data.msg,
 						confirmFn:function () {
 

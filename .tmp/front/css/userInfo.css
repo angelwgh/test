@@ -36,3 +36,43 @@
 .m-user-info .user-info .info .radio label {
   padding-left: 40px;
 }
+.m-user-info .upload-head-img {
+  padding-bottom: 50px;
+}
+.m-user-info .upload-head-img .existing-img {
+  position: relative;
+  margin: 0 auto;
+  width: 700px;
+  height: 200px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 8px 0 #ccc;
+  overflow: hidden;
+}
+.m-user-info .upload-head-img .existing-img .img img {
+  width: 100%;
+}
+.m-user-info .upload-head-img .existing-img .img .text {
+  margin-top: 5px;
+  text-align: center;
+}
+.m-user-info .upload-head-img .existing-img .img.img-l {
+  margin: 30px;
+  margin-left: 90px;
+  width: 120px;
+}
+.m-user-info .upload-head-img .existing-img .img.img-m {
+  position: absolute;
+  top: 54px;
+  left: 316px;
+  width: 80px;
+}
+.m-user-info .upload-head-img .existing-img .img.img-s {
+  position: absolute;
+  top: 65px;
+  left: 472px;
+  width: 80px;
+  text-align: center;
+}
+.m-user-info .upload-head-img .existing-img .img.img-s img {
+  width: 60px;
+}

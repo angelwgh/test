@@ -1,0 +1,210 @@
+.modal-content{
+	overflow: auto;
+	input[type='file']{
+		display: none;
+	}
+	.m-rich-text-editor{
+		width: 898px;
+		.modal-body{
+			overflow: hidden;
+			padding: 0;
+			height: 600px;
+			.left-box{
+				border-right: 1px solid;
+			    padding-top: 15px;
+			    padding-left: 30px;
+				height: 600px;
+
+				.list-group-item{
+					cursor: pointer;
+					transition:0.3s;
+					margin-bottom: 5px;
+
+					span{
+						display: block;
+					    height: 80px;
+					    line-height: 80px;
+					    font-size: 25px;
+					    text-align: center;
+					    cursor: pointer;
+					}
+				}
+				
+			}
+
+			.right-box{
+				height: 600px;
+				padding: 40px 60px; 
+				overflow: auto;
+				width: 683px;
+				.title{
+					padding:20px 0;
+					input{
+						font-size: 35px;
+					    padding: 5px;
+					    border: none;
+					    border-bottom: 1px solid #ddd;
+					}
+
+					input:focus{
+						outline: none;
+					}
+				}
+
+				.category{
+
+					input{padding: 5px;}
+
+					input:focus{
+						
+						outline: none;
+					}
+					.category-list{
+						overflow: hidden;
+						//height: 0;
+						//transition:0.4s;
+						margin: 10px 0;
+						//border-bottom: 1px solid #ddd;
+						ul{
+							margin-top: -100%;
+							padding: 5px;
+							border:1px solid #ddd;
+							transition:0.6s;
+							li{
+								float: left;
+								padding: 5px;
+
+								span{
+									padding:2px 4px;
+									display: block;
+									border:1px solid #ddd;
+									border-radius: 4px;
+									cursor: pointer;
+									transition:0.2s;
+								}
+
+								span:hover{
+									background-color: #f1f1f1
+								}
+							}
+						
+						}
+					}
+					.category-list.active{
+						//eight: auto;
+						ul{
+							margin-top: 10px;
+					
+						}
+					}
+				}
+
+				.content{
+					.item{
+						    position: relative;
+						    display: block;
+						    padding: 10px 15px;
+						    background-color: #fff;
+						    border-bottom: 1px solid #ddd;
+
+						    .txt{
+						    	span{
+						    		white-space: pre-wrap;
+						    	}
+						    	//text-indent: 2em;
+						    }
+
+						    .img{
+						    	span{
+						    		display: block;
+						    		width: 100%;
+						    		margin-bottom: 10px;
+						    		text-align: center;
+
+						    		img{
+						    			max-width: 100%;
+						    		}
+			
+
+						    	}
+						    }
+
+						    .url{
+								font-size: 20px;
+						    }
+
+						    .video{
+						    	video{
+						    		max-width: 100%;
+						    	}
+						    }
+					}
+				}
+			}
+		}
+		
+	}
+}
+
+//添加文本
+.modal-add-text{
+	textarea{
+		width: 100%;
+		min-height: 300px;
+		padding: 30px;
+		line-height: 2;
+		font-size: 18px;
+	}
+}
+
+//添加链接
+.modal-add-url{
+	input:focus{
+	    outline: none;
+	    box-shadow:none;
+	}
+
+	.item{
+		position: relative;
+		padding-top: 15px;
+		border-bottom: 1px solid #ddd;
+
+		.close{
+			position: absolute;
+			top: 10px;
+			right: 50px;
+			opacity: 0;
+			transition:0.4s;
+		}
+	}
+
+	.item:hover{
+		.close{
+			opacity: 0.5;
+		}
+	}
+
+	.add{
+		span{
+			margin: 0 auto;
+		    padding: 5px;
+		    width: 60%;
+		    display: block;
+		    font-size: 50px;
+		    line-height: 50px;
+		    text-align: center;
+		    border: 1px solid #ddd;
+		    border-radius: 10px;
+			cursor: pointer;
+		}
+	}
+}
+
+//添加位置
+.modal-add-position{
+	.map{
+		display: block;
+		height: 600px;
+		border: 1px solid #ddd;
+	}
+}

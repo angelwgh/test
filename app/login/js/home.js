@@ -34,7 +34,8 @@ define(['angular','md5','cookie'],function (angular,md5,cookie) {
 		'$scope',
 		'getCookiesInfo',
 		'$http',
-		function($scope,getCookiesInfo,$http){
+		'$window',
+		function($scope,getCookiesInfo,$http,$window){
 		$scope.account_info={
 			account_type:'1',
 			cruuent:'normal',
@@ -99,7 +100,16 @@ define(['angular','md5','cookie'],function (angular,md5,cookie) {
 				})
 				.then(function (data) {
 					//console.log(data.data.jsonBody.location.replace(/^https?:\/\/[\w-.]+(:\d+)?/i,''))
-					window.location = data.data.jsonBody.location.replace(/^https?:\/\/[\w-.]+(:\d+)?/i,'')
+					console.log(data.data)
+					console.log($window)
+					if(data.data.state == 1){
+						$window.localStorage['accessToken'] = data.data.jsonBody.acceToken.accessToken;
+						window.location = data.data.jsonBody.location.replace(/^https?:\/\/[\w-.]+(:\d+)?/i,'')
+					}else{
+						alert(data.data.msg)
+					}
+
+					//
 					//console.log(window.location)
 				})
 				

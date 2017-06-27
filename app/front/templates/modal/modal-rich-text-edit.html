@@ -1,0 +1,69 @@
+<div class="m-rich-text-editor">
+	<div class="modal-header">
+	    <h3 class="modal-title">b{{model.title}}</h3>
+	</div>
+	<div class="modal-body">
+		<input id="modal_add_image" type="file" multiple>
+		<input id="modal_add_video" type="file" >
+	    <div class="row">
+		   	<div class="col-xs-3 left-box">
+				<ul class="list-group">
+					<li class="list-group-item"
+						ng-repeat="item in model.sideMenuList">
+						
+						<span ng-click="events.addContect(item.type)"><i ng-class="item.ico"></i> b{{item.text}}</span>		
+					</li>
+				</ul>
+		   	</div>
+		   	<div class="col-xs-9 right-box">
+				<div class="title">
+					<input type="text" placeholder="请在这里输入标题" ng-model="text.title">
+				</div>
+				<div class="category">
+					帖子类别: <input type="text" placeholder="点击选择分类" gh-readonly 
+						   ng-click="events.showCategory($event)"
+						   ng-model="text.category">
+					<div class="category-list" ng-class="{'active':state_control.category_show}">
+						<ul class="clearfix">
+							<li ng-repeat="item in model.category.sub">
+
+								<span ng-click="events.selectCategory($event,item)">b{{item.name}}</span> 
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ul class="content">
+					<li class="item" ng-repeat="item in text.content">
+						<div class="txt" ng-if="item.type=='txt'">
+							<span>b{{item.obj}}</span>
+						</div>
+						<div class="img" ng-if="item.type=='img'">
+							<span ng-repeat="img in item.obj">
+								<img ng-src="b{{img}}">
+							</span>
+						</div>
+						<div class="url" ng-if="item.type=='url'">
+							<a ng-href="b{{item.url}}"><span>b{{item.title}}</span></a>
+						</div>
+						<div class="video" ng-if="item.type == 'video'">
+							<video ng-src="b{{item.obj}}" controls></video>
+
+						</div>
+						<div class="lbs" ng-if="item.type == 'lbs'">
+							<div>
+								<span>b{{item.obj}}</span><br>
+								<span>b{{item.lat}}</span><br>
+								<span>b{{item.lon}}</span>
+							</div>
+
+						</div>
+					</li>
+				</ul>
+		   	</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+	    <button class="btn btn-primary" type="button" ng-click="events.ok()">发布</button>
+	    <button class="btn btn-warning" type="button" ng-click="events.cancel()">取消</button>
+	</div>	
+</div>

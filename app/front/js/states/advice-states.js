@@ -1,4 +1,10 @@
-define(['angularUiRouter'],function () {
+/**
+ * 一件反馈
+ * @作者     翁光辉
+ *             --->angelwgh
+ * @日期     2017-06-19
+ */
+define(['angularUiRouter','modules/advice/main'],function () {
 	'use strict';
 	return angular.module('app.states.advice',['ui.router'])
 		   .config(['$stateProvider',
@@ -10,7 +16,9 @@ define(['angularUiRouter'],function () {
 	            		/*sticky: true,*/
 	            		views:{
 							'@':{
-					  			template:'<div>意见反馈</div>'
+					  			templateUrl:'views/advice/advice-basic.html',
+					  			controller:'app.advice.basic'	  				
+					  			
 					  		}
 	            		}
 				  		

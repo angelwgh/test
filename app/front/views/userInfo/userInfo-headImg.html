@@ -1,0 +1,25 @@
+<div class="upload-head-img container-fluid">
+	<div class="page-header">
+	  <h3>当前我的头像 <small>【如果您还没有设置自己的头像，系统会显示为默认头像，您需要自己上传一张新照片来作为自己的个人头像】</small></h3>
+	</div>
+	<div class="existing-img">
+		<div class="img img-l">
+			<img ng-src="b{{user_info.headImg}}" class="img-thumbnail">
+			<div class="text">120px X 120px</div>
+		</div>
+		<div class="img img-m">
+			<img ng-src="b{{user_info.headImg}}" class="img-thumbnail">
+			<div class="text">80px X 80px</div>
+		</div>
+		<div class="img img-s">
+			<img ng-src="b{{user_info.headImg}}" class="img-thumbnail">
+			<div class="text">60px X 60px</div>
+		</div>
+		
+	</div>
+	<div class="page-header">
+	  <h3>设置我的新头像 <small>【请选择一个新照片进行上传编辑。头像保存后，您可能需要刷新一下本页面(按F5键)，才能查看最新的头像效果】</small></h3>
+	</div>
+	<upload-head-img model="model"></upload-head-img>
+	
+</div>

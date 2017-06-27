@@ -3,11 +3,19 @@ define(function () {
 
 	return ['$scope','userInfoServices','BasicData','$state','modalfix',
 		function ($scope,userInfoServices,BasicData,$state,modalfix) {
-				userInfoServices.getUserInfo().then(function (data) {
-					data.jsonBody.headImg = '/mfs/headImage/LOGO-62c8d4cf557e4185869348ab5704c49c.png';
-					$scope.user_info = data.jsonBody;
-					console.log($scope.user_info)
-					
-				})
+
+			$scope.basic_events={
+				getUserInfo:function () {
+					userInfoServices.getUserInfo().then(function (data) {
+						//console.log(data.jsonBody)
+						data.jsonBody.headImg = BasicData.img_basic_url+data.jsonBody.headImg.replace('/upfile','');
+						$scope.user_info = data.jsonBody;
+						//console.log($scope.user_info)
+						
+					})
+				}
+			}
+			$scope.basic_events.getUserInfo();
+				
 	}]
 })

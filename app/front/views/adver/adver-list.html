@@ -1,6 +1,6 @@
 <ul class="adver-list clearfix">
 	<li class="adver" ng-repeat="adver in adver_data.adver_list">
-		<img ng-src="b{{'/mfs'+adver.imagePath}}">
+		<img ng-src="b{{adver.imagePath}}">
 		<span class="edit"
 			  ng-if="adver_data.permissions.modify"
 			  ng-click="events.modifyBeforeAdvert($event,adver)">修</span>

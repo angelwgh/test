@@ -63,6 +63,9 @@
 .m-home-page .menu-list li:nth-of-type(3) {
   background-color: #de566e;
 }
+.m-home-page .menu-list li:nth-of-type(4) {
+  background-color: #cc9933;
+}
 /**
  * 广告管理
  */

@@ -1,0 +1,6 @@
+.modal-content {
+  overflow: auto;
+}
+.modal-content .m-rich-text-editor {
+  width: 898px;
+}

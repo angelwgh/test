@@ -3,12 +3,12 @@
 		<ul class="nav">
 			<li ng-repeat="item in basic_data.menu_list" class="animated zoomIn" ng-click="events.statesGo($event,item)">
 				<div class="defalt">
-					<i class="glyphicon" ng-class="item.icon"></i>
+					<i class="fa" ng-class="item.icon"></i>
 					<span>b{{item.name}}</span>
 				</div>
 				
 				<div class="hover">
-					<div class="layer-1"><i class="glyphicon" ng-class="item.icon"></i></div>
+					<div class="layer-1"><i class="fa" ng-class="item.icon"></i></div>
 					<div class="layer-2"><span>b{{item.name}}</span></div>
 					<div class="bgc"></div>
 				</div>

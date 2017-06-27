@@ -29,7 +29,7 @@ define(function () {
 
 					angular.forEach(data.jsonBody,function (item,index) {
 						if (item.imagePath) {
-	                        item.imagePath = item.imagePath.substring(7);
+	                        item.imagePath = BasicData.img_basic_url+item.imagePath.substring(7);
 	                    };
 	                    if(item.beginTime){
 	                    	item.effTime = item.beginTime+'至'+item.endTime

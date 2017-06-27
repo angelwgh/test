@@ -1,0 +1,36 @@
+<div class="m-upload-head-img">
+	<div class="row">
+		<div class="col-xs-9">
+			<input type="file" name="file" id="file_input">
+			<button class="btn btn-success" ng-click="events.selectImg($event)">选择图片</button>
+			<span>b{{'只支持jng,jpeg,png'}}</span>
+			<div class="img-thumb">
+				 <img ng-src="b{{model.file.src}}" id="upload_head_img">
+				
+			</div>
+			<button  class="btn btn-success" ng-click="events.determine($event)">确认</button>
+			<button  class="btn btn-success" 
+					 ng-click="events.uploadImg($event)"
+					 ng-disabled="!isImgReady">上传头像</button>
+		</div>
+		<div class="col-xs-3">
+			<div class="sm-thumb">
+				<div class="img-l">
+					<div class="img-preview" ></div>
+					
+				</div>
+					<span>120pxX120px</span>
+				<div class="img-m">
+					<div class="img-preview" ></div>
+					
+				</div>
+					<span>80pxX80px</span>
+				<div class="img-s">
+					<div class="img-preview" ></div>
+					
+				</div>
+				<span>60pxX60px</span>
+			</div>
+		</div>
+	</div>
+</div>

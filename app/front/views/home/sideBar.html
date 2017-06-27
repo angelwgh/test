@@ -13,11 +13,11 @@
 				ng-repeat="item in basic_data.menu_list"
 				ng-class="{'active':(data.active == item.state)}">
 				<a href="javascript:void(0)" ng-click="events.menuClick($event,item)">
-					<i class="glyphicon" ng-class="item.icon"></i>
+					<i class="fa" ng-class="item.icon"></i>
 					<span>b{{item.name}}</span>
 					<i class="show-ico" 
 					   ng-if="item.subs && item.subs.length>0"
-					   ng-class="{'showsub':item.isSubShow}"></i>
+					   ng-class="{'showsub':item.isSubShow || (data.active == item.state)}"></i>
 				</a>
 				<ul class="sub-nav" ng-if="item.isSubShow || (data.active == item.state)">
 

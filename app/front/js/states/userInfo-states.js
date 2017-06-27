@@ -36,7 +36,8 @@ define(['angularUiRouter','modules/userInfo/main'],function () {
 				  	url:'/headImgModify',
 				  	views:{
 				  		'@states.userInfo':{
-				  			template:'<div>修改头像</div>'
+				  			templateUrl:'views/userInfo/userInfo-headImg.html',
+				  			controller:'app.userInfo.headImg'
 				  		}
 				  	}
 				  })
@@ -44,7 +45,8 @@ define(['angularUiRouter','modules/userInfo/main'],function () {
 				  	url:'/pswModify',
 				  	views:{
 				  		'@states.userInfo':{
-				  			template:'<div>修改密码</div>'
+				  			templateUrl:'views/userInfo/userInfo-password.html',
+				  			controller:'app.userInfo.password'
 				  		}
 				  	}
 				  })

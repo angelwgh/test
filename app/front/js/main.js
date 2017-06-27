@@ -31,7 +31,7 @@ require.config ({
 		'playLoader': '../../../bower_components/StudyLibrary/scripts/common/loader',
 		multimediaDocument: '../../../bower_components/StudyLibrary/scripts',
 		jqueryNiceScroll: '../../../bower_components/jquery.nicescroll/jquery.nicescroll',
-		md5: '../../../bower_components/js-md5/src/md5'
+		md5: '../../../bower_components/js-md5/js/md5'
 
 	},
 	shim: {

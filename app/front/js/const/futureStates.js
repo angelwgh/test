@@ -17,6 +17,11 @@ define(function(){
  				"stateName":"states.advice",
  				"url":"/advice","type":"ocLazyLoad"
  			},
+ 			{
+ 				"module":"app.states.contacts",
+ 				"stateName":"states.contacts",
+ 				"url":"/contacts","type":"ocLazyLoad"
+ 			}
  			/*{
  				"module":"app.states.courseDetail",
  				"stateName":"states.courseDetail",

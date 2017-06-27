@@ -21,8 +21,8 @@ define(['angular','restangular'],function (angular) {
 		$scope.$watch('basic_data',function (newValue) {
 			if(newValue.user_info){
 				//console.log(newValue)
-				//newValue.user_info.headImg = newValue.user_info.headImg.replace('/upfile','')
-				newValue.user_info.headImg='/headImage/LOGO-62c8d4cf557e4185869348ab5704c49c.png'
+				newValue.user_info.headImg = newValue.user_info.headImg.replace('/upfile',BasicData.img_basic_url)
+				//newValue.user_info.headImg='/headImage/LOGO-62c8d4cf557e4185869348ab5704c49c.png'
 			}
 				
 		},true)
@@ -52,7 +52,11 @@ define(['angular','restangular'],function (angular) {
 				
 
 				if(item.subs && item.subs.length>0){
-					item.isSubShow = !item.isSubShow;
+					if(item.state != $scope.data.active){
+						item.isSubShow = !item.isSubShow;
+					}
+					
+					
 				}else{
 					$state.go(item.state)
 					//console.log(item.state.match(/states\.([a-zA-Z0-9_]*)/g))
