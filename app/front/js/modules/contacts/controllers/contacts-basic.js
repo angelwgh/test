@@ -47,9 +47,10 @@ define(function () {
 			totalItems:1000, //总数据条数
 			currentPage:1, //当前页数
 			maxSize:10,  //可选择的页数范围
-			pageSize:10, //每页的条数
+			pageSize:10, //每页的条数 //每页的条数 
+
 			pageChanged:function () {
-				console.log($scope.pages.currentPage)
+				//console.log($scope.pages.currentPage)
 				$scope.events.queryUserCircleList();
 			}
 		}
