@@ -101,43 +101,58 @@
 
 				.content{
 					.item{
-						    position: relative;
-						    display: block;
-						    padding: 10px 15px;
-						    background-color: #fff;
-						    border-bottom: 1px solid #ddd;
+					    position: relative;
+					    display: block;
+					    padding: 10px 15px;
+					    background-color: #fff;
+					    border-bottom: 1px solid #ddd;
+						
+						.ctr{
+							text-align: right;
+							opacity:0;
+							font-size: 20px;
+							vertical-align: middle;
+							transition:0.5s;
+							span{
+								cursor: pointer;
+							}
+						}
+					    .txt{
+					    	span{
+					    		white-space: pre-wrap;
+					    	}
+					    	//text-indent: 2em;
+					    }
 
-						    .txt{
-						    	span{
-						    		white-space: pre-wrap;
-						    	}
-						    	//text-indent: 2em;
-						    }
+					    .img{
+					    	span{
+					    		display: block;
+					    		width: 100%;
+					    		margin-bottom: 10px;
+					    		text-align: center;
 
-						    .img{
-						    	span{
-						    		display: block;
-						    		width: 100%;
-						    		margin-bottom: 10px;
-						    		text-align: center;
+					    		img{
+					    			max-width: 100%;
+					    		}
+		
 
-						    		img{
-						    			max-width: 100%;
-						    		}
-			
+					    	}
+					    }
 
-						    	}
-						    }
+					    .url{
+							font-size: 20px;
+					    }
 
-						    .url{
-								font-size: 20px;
-						    }
-
-						    .video{
-						    	video{
-						    		max-width: 100%;
-						    	}
-						    }
+					    .video{
+					    	video{
+					    		max-width: 100%;
+					    	}
+					    }
+					}
+					.item:hover{
+						.ctr{
+							opacity: 0.8
+						}
 					}
 				}
 			}

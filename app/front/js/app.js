@@ -19,7 +19,8 @@ define([
 		'states/home-states',
 		'home',
 		'angularBootstrap',
-		'services/principal'
+		'services/principal',
+		'angularSanitize'
 	],function (futureStates,modules) {
 	
 	var app = angular.module('app', [
@@ -33,7 +34,8 @@ define([
 			'ct.ui.router.extras',
 			'ui.router',
 			'app.home',
-			'app.states.home'
+			'app.states.home',
+			'ngSanitize'
 		])
 
 	app.config(function ($interpolateProvider,

@@ -1,0 +1,65 @@
+<!-- 查看帖子详情的模态框模版 -->
+<div class="m-article-detail">
+	
+	<div class="modal-add-position">
+	 	<div class="modal-header">
+	 		<div class="close" ng-click="events.close()">
+		    	<i class="fa fa-close"></i>
+		    </div>
+		    <h3 class="modal-title">帖子详情</h3>
+		    
+		</div>
+		<div class="modal-body">
+			<h4 class="title">b{{data.title}}</h4>
+			<div>
+				<span class="label label-primary">
+					b{{data.category.name}}
+				</span>
+				<span class="label label-success">
+					b{{data.pubdate}}
+				</span>
+				<span class="label label-info">
+					浏览: b{{data.viewcount}}
+				</span>
+				<span class="label label-info">
+					点赞: b{{data.zancount}}
+				</span>
+			</div>
+			<div class="content">
+				<ul class="list-group">
+				  <li class="list-group-item" ng-repeat="item in data.content">
+						<div class="txt" ng-if="item.type=='txt'">
+							<p ng-bind-html="item.obj"></p>
+						</div>
+						<div class="img" ng-if="item.type=='img'">
+							<span ng-repeat="img in item.obj">
+								<img ng-src="b{{img}}">
+							</span>
+						</div>
+						<div class="url" ng-if="item.type=='url'">
+							<a ng-href="b{{item.url}}"><span>b{{item.title}}</span></a>
+						</div>
+						<div class="video" ng-if="item.type == 'video'">
+							<video ng-src="b{{item.obj | trusted}}" 
+								   controls></video>
+
+						</div>
+						<div class="lbs" ng-if="item.type == 'lbs'">
+							<div>
+								<span>b{{item.obj}}</span><br>
+								<span>b{{item.lat}}</span><br>
+								<span>b{{item.lon}}</span>
+							</div>
+
+						</div>
+				  </li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="modal-footer">
+		   
+		</div>
+	</div>
+</div>
+

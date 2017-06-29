@@ -6764,7 +6764,30 @@ textarea:focus {
 }
 .top-bar button {
   width: 100px;
-  margin: 0 20px;
+  margin-right: 20px;
+}
+.top-bar .left-txt {
+  margin-left: 10px;
+}
+.top-bar .btn-group {
+  margin-right: 20px;
+}
+.top-bar .btn-group button {
+  margin: 0;
+}
+.top-bar .btn-group .dropdown-content:hover,
+.top-bar .btn-group .dropdown-content:active,
+.top-bar .btn-group .dropdown-content:focus {
+  background-color: #fff;
+  border-color: #ccc;
+  box-shadow: none;
+  outline: none;
+}
+.top-bar .btn-group .dropdown-toggle {
+  width: 30px;
+}
+.top-bar .btn-group .dropdown-menu li {
+  float: left;
 }
 /*列表树样式*/
 .m-list-tree {
@@ -7112,6 +7135,16 @@ textarea:focus {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item .ctr {
+  text-align: right;
+  opacity: 0;
+  font-size: 20px;
+  vertical-align: middle;
+  transition: 0.5s;
+}
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item .ctr span {
+  cursor: pointer;
+}
 .modal-content .m-rich-text-editor .modal-body .right-box .content .item .txt span {
   white-space: pre-wrap;
 }
@@ -7129,6 +7162,9 @@ textarea:focus {
 }
 .modal-content .m-rich-text-editor .modal-body .right-box .content .item .video video {
   max-width: 100%;
+}
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item:hover .ctr {
+  opacity: 0.8;
 }
 .modal-add-text textarea {
   width: 100%;
@@ -7315,6 +7351,56 @@ textarea:focus {
 /**
  * 人脉圈
  */
+.m-contacts .article-list {
+  table-layout: fixed;
+  max-width: 100%;
+}
+.m-contacts .article-list .title {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.m-contacts .article-list .btn {
+  margin: 0 2px;
+}
+.m-article-detail .title {
+  line-height: 1.6;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+.m-article-detail .close {
+  font-size: 25px;
+}
+.m-article-detail .content {
+  margin-top: 10px;
+}
+.m-article-detail .content .list-group-item {
+  border-radius: 0;
+  margin-bottom: 0;
+  border: none;
+}
+.m-article-detail .content .list-group-item .img {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.m-article-detail .content .list-group-item .img span {
+  margin: 5px 0;
+  display: block;
+}
+.m-article-detail .content .list-group-item .img span img {
+  width: 100%;
+}
+.m-article-detail .content .list-group-item .video {
+  text-align: center;
+}
+.m-article-detail .content .list-group-item .video video {
+  max-width: 100%;
+}
+.m-article-detail .label {
+  margin-right: 5px;
+}
 /**
  * 颜色样式
  */

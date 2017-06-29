@@ -15,6 +15,12 @@ define(function () {
 
 	var authorizationSystem = angular.module ('AuthorizationSystem', ['ui.bootstrap']);
 
+	authorizationSystem.filter('trusted', ['$sce', function ($sce) {
+	    return function(url) {
+	        return $sce.trustAsResourceUrl(url);
+	    };
+	}]);
+
 	authorizationSystem.factory('BasicData',['authorize',function (authorize) {
 		return{
 			user_info:null,
@@ -180,19 +186,7 @@ define(function () {
 						return that.options;
 					}
 				}
-				//console.log(that.options)
-				/*var modalInstance = $modal.open({
-					templateUrl:that.options.templateUrl,
-					controller:that.options.controller,
-					size:that.options.size,
-					backdrop:that.options.backdrop,
-					//把options注入到controller中去
-					resolve:{
-						options:function () {
-							return that.options;
-						}
-					}
-				})*/
+
 				var modalInstance = $modal.open(that.options)
 
 
@@ -227,17 +221,18 @@ define(function () {
 			richTextEdit:function (data) {
 				//console.log(1)
 				var data = data||{};
-				console.log(data)
+				//console.log(data)
 				var options={
 					//title:data.title || '发表文章',
 					model:data.model || {},
 					size:'lg',
 					backdrop:'static',
-					confirmFn:data.confirmFn||null,
-					controller:data.controller || 'modalfix.editor',
-					templateUrl:data.templateUrl || 'templates/modal/modal-rich-text-edit.html'
+					confirmFn:null,
+					controller:'modalfix.editor',
+					templateUrl:'templates/modal/modal-rich-text-edit.html'
 				}
 				//console.log(options)
+				angular.extend(options, data);
 				var modalfix = new Modalfix();
 				modalfix.init(options).open();
 			},
@@ -245,11 +240,12 @@ define(function () {
 			//添加纯文本内容
 			addText:function (data) {
 				var options={
-					size:data.size || 'sm',
-					confirmFn:data.confirmFn||null,
-					controller:data.controller || 'modalfix.addText',
-					templateUrl:data.templateUrl || 'templates/modal/add-text.html'
+					size:'lg',
+					confirmFn:null,
+					controller:'modalfix.addText',
+					templateUrl:'templates/modal/add-text.html'
 				}
+				angular.extend(options, data);
 				var modalfix = new Modalfix();
 				modalfix.init(options).open();
 
@@ -259,21 +255,22 @@ define(function () {
 			//添加链接
 			addUrl:function (data) {
 				var options={
-					size:data.size || 'lg',
-					confirmFn:data.confirmFn||null,
-					controller:data.controller || 'modalfix.addUrl',
-					templateUrl:data.templateUrl || 'templates/modal/add-url.html'
+					size:'lg',
+					confirmFn:null,
+					controller:'modalfix.addUrl',
+					templateUrl:'templates/modal/add-url.html'
 				}
+				angular.extend(options, data);
 				var modalfix = new Modalfix();
 				modalfix.init(options).open();
 			},
 
 			addPosition:function (data) {
 				var options={
-					size:data.size || 'lg',
-					confirmFn:data.confirmFn||null,
-					controller:data.controller || 'modalfix.addPosition',
-					templateUrl:data.templateUrl || 'templates/modal/add-position.html'
+					size:'lg',
+					confirmFn:null,
+					controller:'modalfix.addPosition',
+					templateUrl:'templates/modal/add-position.html'
 				}
 				angular.extend(options, data)
 				//console.log(options)
@@ -305,18 +302,13 @@ define(function () {
 		function($scope,options,$modalInstance,modalfix,$q,$timeout,upLoadfile,BasicData){
 			
 			$scope.model = options.model;
-			//$scope.title = options.title
+
 			console.log($scope.model);
-			/*$scope.click=function () {
-				console.log($scope.show)
-				//$scope.show = false
-				modalfix.addText({
-					size:'lg'
-				});
-			}*/
+
+
 			$scope.text={
-				title:'',
-				category:'',
+				title:null,
+				category:null,
 				count:0,
 				content:[]
 			}
@@ -344,6 +336,25 @@ define(function () {
 				},
 				//确认
 				ok:function () {
+					if(!$scope.text.title){
+						modalfix.ok({
+							msg:'请输入标题'
+						});
+						return;
+					}
+					if(!$scope.text.category){
+						modalfix.ok({
+							msg:'请选择分类'
+						});
+						return;
+					}
+
+					if($scope.text.count <=0){
+						modalfix.ok({
+							msg:'请输入内容'
+						});
+						return;
+					}
 					$modalInstance.close(options.confirmFn($scope.text))
 				},
 				//取消
@@ -352,6 +363,7 @@ define(function () {
 				},
 				//添加内容
 				addContect:function (type) {
+					var file_form  = angular.element('.file-upload');
 					switch(type){
 						case 'txt':
 							$scope.events.addText().then(function (data) {
@@ -367,6 +379,7 @@ define(function () {
 							break;
 						case 'img':
 							$scope.events.addImg().then(function (data) {
+								file_form[0].reset();
 								if(!data){
 									return
 								}
@@ -400,7 +413,7 @@ define(function () {
 						case 'video':
 							//$scope.events.addVideo();
 							$scope.events.addVideo().then(function (data) {
-								
+								file_form[0].reset();
 								if(!data) return;
 								var obj={
 									index:$scope.text.count++,
@@ -410,11 +423,11 @@ define(function () {
 								}
 
 								$scope.events.captureImage(obj.obj).then(function (data) {
-									console.log(data)
+									//console.log(data)
 									obj.img = BasicData.img_basic_url+data;
 									Array.prototype.push.call($scope.text.content,obj);
 
-									console.log($scope.text.content)
+									//console.log($scope.text.content)
 								})
 
 								//
@@ -441,8 +454,9 @@ define(function () {
 						size:'lg',
 						confirmFn:function (data) {
 							if(typeof data == 'string'){
-								var text = data.replace(/\n/g,'\n')								
+								var text = data;						
 								deferred.resolve(text)
+
 							}							
 						}
 					})
@@ -490,6 +504,8 @@ define(function () {
 				//选择文件 //判断文件类型
 				selectFile:function (id) {
 					var file_input = angular.element(id);
+					var file_form  = angular.element('.file-upload');
+
 					var deferred = $q.defer();
 					$timeout(function () {		
 						file_input.click();
@@ -511,12 +527,14 @@ define(function () {
 								modalfix.ok({
 									msg:'请选择正确的文件类型'
 								})
+								file_form[0].reset();
 								return;
 							}
 						}
-						deferred.resolve(files)
+						deferred.resolve(files);
+						
 					}
-		
+					
 					return deferred.promise;
 				},
 				//上传文件,返回结果
@@ -547,7 +565,7 @@ define(function () {
 			 			
 					})
 				},
-				//获取视频当前帧上传然后获取地址
+				//获取视频当前帧图片,上传,然后获取地址
 				captureImage:function (src) {
 					var deferred = $q.defer();
 
@@ -591,6 +609,82 @@ define(function () {
 					}
 
 					return deferred.promise;
+				},
+
+				/**
+				 * 编辑帖子内容
+				 */
+				moveUp:function (e,item) {
+					e.stopPropagation();
+					var temp = $scope.text.content[item.index-1]
+
+					$scope.text.content[item.index-1] = item;
+					$scope.text.content[item.index] =temp;
+
+					angular.forEach($scope.text.content, function(value, key){
+						value.index = key;
+					});
+				},
+				moveDown:function (e,item) {
+					e.stopPropagation();
+					var temp = $scope.text.content[item.index+1]
+
+					$scope.text.content[item.index+1] = item;
+					$scope.text.content[item.index] =temp;
+
+					angular.forEach($scope.text.content, function(value, key){
+						value.index = key;
+					});
+				},
+				remove:function (e,index) {
+					e.stopPropagation();
+					modalfix.confirm({
+						msg:'确定要删除吗?',
+						confirmFn:function () {
+							$scope.text.content.splice(index,1);
+							angular.forEach($scope.text.content, function(value, key){
+								value.index = key;
+							});
+							$scope.text.count = $scope.text.content.length;
+						}
+					})
+					
+				},
+				modify:function (e,item) {
+					e.stopPropagation();
+					console.log(item)
+					switch(item.type){
+						case 'txt':
+							modifyTxt(item);
+							break;
+						case 'url':
+							modifyUrl(item);
+							break;
+						default:
+							break;
+					};
+
+					function modifyTxt(item) {
+						modalfix.addText({
+							model:item,
+							confirmFn:function (data) {
+								//console.log(data)
+								item.obj = data;
+							}
+						})
+					}
+
+					function modifyUrl(item) {
+						modalfix.addUrl({
+							model:item,
+							confirmFn:function (data) {
+								//console.log(data)
+								console.log(data)
+								item.title = data.title;
+								item.url = data.url;
+							}
+						})
+					}
 				}
 
 			}
@@ -604,8 +698,8 @@ define(function () {
 	 */
 	authorizationSystem.controller('modalfix.addText',['$scope','options','$modalInstance',
 		function($scope,options,$modalInstance){
-			
-			$scope.text=null;
+			//console.log(options)
+			$scope.text=options.model ? options.model.obj : null;
 			$scope.ok=function () {
 
 				$modalInstance.close(options.confirmFn($scope.text))
@@ -617,9 +711,10 @@ define(function () {
 
 	authorizationSystem.controller('modalfix.addUrl',['$scope','options','$modalInstance','modalfix',
 		function($scope,options,$modalInstance,modalfix){
+			console.log(options)
 			$scope.url = {
-				title:null,
-				url:null
+				title:options.model ? options.model.title : null,
+				url:options.model ? options.model.url : null
 			}
 			$scope.events={
 				ok:function function_name() {
@@ -676,6 +771,8 @@ define(function () {
 				$modalInstance.dismiss()
 			}
 	}]);
+
+	
 
 
 })

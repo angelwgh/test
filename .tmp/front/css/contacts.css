@@ -1,3 +1,53 @@
 /**
  * 人脉圈
  */
+.m-contacts .article-list {
+  table-layout: fixed;
+  max-width: 100%;
+}
+.m-contacts .article-list .title {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.m-contacts .article-list .btn {
+  margin: 0 2px;
+}
+.m-article-detail .title {
+  line-height: 1.6;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+.m-article-detail .close {
+  font-size: 25px;
+}
+.m-article-detail .content {
+  margin-top: 10px;
+}
+.m-article-detail .content .list-group-item {
+  border-radius: 0;
+  margin-bottom: 0;
+  border: none;
+}
+.m-article-detail .content .list-group-item .img {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.m-article-detail .content .list-group-item .img span {
+  margin: 5px 0;
+  display: block;
+}
+.m-article-detail .content .list-group-item .img span img {
+  width: 100%;
+}
+.m-article-detail .content .list-group-item .video {
+  text-align: center;
+}
+.m-article-detail .content .list-group-item .video video {
+  max-width: 100%;
+}
+.m-article-detail .label {
+  margin-right: 5px;
+}

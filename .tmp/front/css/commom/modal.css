@@ -90,6 +90,16 @@
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item .ctr {
+  text-align: right;
+  opacity: 0;
+  font-size: 20px;
+  vertical-align: middle;
+  transition: 0.5s;
+}
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item .ctr span {
+  cursor: pointer;
+}
 .modal-content .m-rich-text-editor .modal-body .right-box .content .item .txt span {
   white-space: pre-wrap;
 }
@@ -107,6 +117,9 @@
 }
 .modal-content .m-rich-text-editor .modal-body .right-box .content .item .video video {
   max-width: 100%;
+}
+.modal-content .m-rich-text-editor .modal-body .right-box .content .item:hover .ctr {
+  opacity: 0.8;
 }
 .modal-add-text textarea {
   width: 100%;

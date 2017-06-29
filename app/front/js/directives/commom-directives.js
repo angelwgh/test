@@ -11,9 +11,12 @@ define (['angular'], function (angular) {
 
 		return {
 			link: function ($scope, $element, $attributes) {
+
 				$element.on ('keyup keydown', function () {
 					return false;
-				})
+				});
+
+				
 			}
 		}
 	}

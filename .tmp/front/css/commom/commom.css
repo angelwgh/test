@@ -41,7 +41,30 @@ textarea:focus {
 }
 .top-bar button {
   width: 100px;
-  margin: 0 20px;
+  margin-right: 20px;
+}
+.top-bar .left-txt {
+  margin-left: 10px;
+}
+.top-bar .btn-group {
+  margin-right: 20px;
+}
+.top-bar .btn-group button {
+  margin: 0;
+}
+.top-bar .btn-group .dropdown-content:hover,
+.top-bar .btn-group .dropdown-content:active,
+.top-bar .btn-group .dropdown-content:focus {
+  background-color: #fff;
+  border-color: #ccc;
+  box-shadow: none;
+  outline: none;
+}
+.top-bar .btn-group .dropdown-toggle {
+  width: 30px;
+}
+.top-bar .btn-group .dropdown-menu li {
+  float: left;
 }
 /*列表树样式*/
 .m-list-tree {

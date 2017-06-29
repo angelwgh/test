@@ -7,8 +7,8 @@
             b{{basic_data.user_info.name}} 
             <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">个人中心</a></li>
-            <li><a href="#">修改密码</a></li>
+            <li ng-click="data.show_top_dropdown = !data.show_top_dropdown"><a href="javascript:void(0)" ui-sref="states.userInfo.basicInfo">个人中心</a></li>
+            <li ng-click="data.show_top_dropdown = !data.show_top_dropdown"><a href="javascript:void(0)" ui-sref="states.userInfo.pswModify">修改密码</a></li>
             
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0)" ng-click="events.loginOut()"><span
