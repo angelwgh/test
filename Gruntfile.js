@@ -101,6 +101,7 @@ module.exports=function (grunt) {
 					port:9001,
 					base:'app',
 					open:true,
+					//定义中间件
 					middleware:function (connect) {
 						return [
 						   // 把脚本，注入到静态文件中

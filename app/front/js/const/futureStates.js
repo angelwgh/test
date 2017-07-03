@@ -21,6 +21,11 @@ define(function(){
  				"module":"app.states.contacts",
  				"stateName":"states.contacts",
  				"url":"/contacts","type":"ocLazyLoad"
+ 			},
+ 			{
+ 				"module":"app.states.employees",
+ 				"stateName":"states.employees",
+ 				"url":"/employees","type":"ocLazyLoad"
  			}
  			/*{
  				"module":"app.states.courseDetail",

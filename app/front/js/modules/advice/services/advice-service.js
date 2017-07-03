@@ -1,11 +1,24 @@
 define(function(){
 	return['Restangular', '$http', function (Restangular, $http) {
-		var adver = Restangular.withConfig(function (config) {
-			config.setBaseUrl('/FxbManager/advertController/')
+		var advice = Restangular.withConfig(function (config) {
+			config.setBaseUrl('/FxbManager/feedbackController/')
 		})
 		return{
-			
-            a:1
+			 
+            saveFeedback:function (data) {
+            	var req = {
+			            "msgHead":"",
+			            "msgBody":"",
+			            "jsonHead":{                   
+			            	"accessToken":data.accessToken
+			            },
+			            "jsonBody":{
+			                "content": data.content   // 帖子id
+			      		} 
+			        }
+			    return advice.all('saveFeedback').post(req);
+            	
+            }
 		}
 	}]
 })

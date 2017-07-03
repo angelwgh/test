@@ -3,7 +3,7 @@
 	    <h1>意见反馈 <small>遇到问题了？尽管告诉我们吧！</small></h1>
 	</div>
 	<form class="form-horizontal" name="form_advice" novalidate="novalidate">
-		<div class="form-group">
+		<!-- <div class="form-group">
 		    <label class="col-xs-2 control-label">选择类型:</label>
 		    <div class="col-xs-8">
 		    	<label class="radio-inline">
@@ -23,7 +23,7 @@
 						   ng-model="advice_data.type"> 其他
 				</label>
 		    </div>
-		</div>
+		</div> -->
 	<div class="form-group">
 	    <label class="col-xs-2 control-label">反馈内容:</label>
 	    <div class="col-xs-8">
@@ -42,10 +42,10 @@
 	     	</div>
 	    </div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label class="col-xs-2 control-label"
 			   >联系方式:</label>
-
+	
 	    <div class="col-xs-4">
 	    	<input type="text" class="form-control" placeholder="输入您的手机号码"
 	    		   name="tel"
@@ -57,15 +57,15 @@
 	    	<i class="glyphicon" ng-class="{'glyphicon-ok text-success': form_advice.tel.$dirty && form_advice.tel.$valid,'glyphicon-remove text-danger':form_advice.tel.$dirty && form_advice.tel.$invalid}"></i>
 	    	<span class="text-danger" 
 	    		ng-if="form_advice.tel.$dirty && form_advice.tel.$invalid">
-
+	
 	    		<span ng-if="form_advice.tel.$error.pattern">
 	    			手机号格号码式不正确
 	    		</span>
 	    		<span ng-if="form_advice.tel.$error.required">手机号不能为空</span>
 	    	</span>
-
+	
 	    </div>
-	</div>
+	</div> -->
 	<div class="form-group">
 	    <div class="col-xs-offset-2 col-xs-8">
 	      <button type="submit" class="btn btn-primary"

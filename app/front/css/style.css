@@ -7447,6 +7447,9 @@ textarea:focus {
 .m-home-page .menu-list li:nth-of-type(4) {
   background-color: #cc9933;
 }
+.m-home-page .menu-list li:nth-of-type(5) {
+  background-color: #333366;
+}
 /**
  * 广告管理
  */

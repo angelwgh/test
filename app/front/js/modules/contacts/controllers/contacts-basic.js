@@ -42,7 +42,7 @@ define(function () {
 
 			]
 		}
-
+		
 		$scope.pages={
 			totalItems:1000, //总数据条数
 			currentPage:1, //当前页数
@@ -88,7 +88,7 @@ define(function () {
 			},
 			//查看帖子详情
 			toViewArticleDetails:function (e,id) {
-					console.log(id);
+					//console.log(id);
 					if(e){
 						e.stopPropagation();
 					}
@@ -105,7 +105,7 @@ define(function () {
 
 					}
 					contactsServices.queryCircleTopicById(data).then(function (data) {
-						console.log(data)
+						//console.log(data)
 						var options={
 							title:'帖子内容',
 							category:$scope.current_category,
@@ -133,12 +133,12 @@ define(function () {
 				function post(data) {
 					//console.log(data)
 					//
-					var firstpic = null
+					var firstpic = null;
 					angular.forEach(data.content, function(value, key){
 						if(value.type == 'txt'){
 							value.obj = value.obj.replace(/\n/g,'<br/>')
 						}
-						console.log(value.type)
+						//console.log(value.type)
 						if(firstpic == null){
 							if(value.type == 'img'){
 								firstpic = value.obj[0];
@@ -148,7 +148,7 @@ define(function () {
 						}
 						
 					});
-					console.log(data)
+					//console.log(data)
 					var options={
 			            "msgHead":"",
 			            "msgBody":"",
@@ -175,6 +175,7 @@ define(function () {
 							modalfix.ok({
 								msg:data.msg
 							})
+							$scope.events.queryUserCircleList()
 						})
 					})
 				};
@@ -197,13 +198,19 @@ define(function () {
 
 				}
 
-				contactsServices.deleteCircleTopicById(options).then(function (data) {
-					console.log(data)
-					modalfix.ok({
-								msg:data.msg
-							})
-					$scope.events.queryUserCircleList()
+				modalfix.confirm({
+					msg:'确定要删除吗',
+					confirmFn:function () {
+						contactsServices.deleteCircleTopicById(options).then(function (data) {
+							//console.log(data)
+							modalfix.ok({
+										msg:data.msg
+									})
+							$scope.events.queryUserCircleList()
+						})
+					}
 				})
+				
 			},
 			//获取签名
 			queryAutographList:function () {
@@ -241,7 +248,7 @@ define(function () {
 			},
 			//选择类别
 			selectCategorys:function (item) {
-				console.log(item)
+				//console.log(item)
 				$scope.select_category=item;
 			}
 		}

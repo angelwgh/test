@@ -53,7 +53,13 @@ define(function () {
 					state:'states.contacts',
 				},
 				{
-					id:'02',
+					id:'03',
+					name:'我的员工',
+					icon:'fa-users',
+					state:'states.employees'
+				},
+				{
+					id:'04',
 					name:'个人中心',
 					icon:'fa-user',
 					state:'states.userInfo',
@@ -74,7 +80,7 @@ define(function () {
 
 				},
 				{
-					id:'03',
+					id:'05',
 					name:'意见反馈',
 					icon:'fa-comment-o',
 					state:'states.advice',

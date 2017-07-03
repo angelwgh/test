@@ -59,7 +59,8 @@ define(['angular'],function (angular) {
 
 	var baiduMap = angular.module('baidiMap', []);
 
-	baiduMap.directive('baiduMap', ['$q', function($q){
+	//添加位置
+	baiduMap.directive('mapAddPosition', ['$q', function($q){
 		// Runs during compile
 		// 
 		
@@ -71,7 +72,9 @@ define(['angular'],function (angular) {
 			scope: {
 				model:'='
 			}, // {} = isolate, true = child, false/undefined = no change
-			// controller: function($scope, $element, $attrs, $transclude) {},
+			controller: function($scope, $element, $attrs, $transclude) {
+				$scope.model = $scope.model || {}
+			},
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			 restrict: 'AE', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',
@@ -80,11 +83,14 @@ define(['angular'],function (angular) {
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			link: function($scope, iElm, iAttrs, controller) {
-				$scope.model= $scope.model || {};
-
-
+				
+					
+					//console.log(iAttrs.model)
+				//$scope.model= $scope.model || {};
+				//console.log($scope.model || {})
+				
 				loadBaiduMaps($q,'1.4').then(function () {
-
+					console.log($scope)
 					var ele = document.getElementById('baidu_map')
 
 					
@@ -92,7 +98,7 @@ define(['angular'],function (angular) {
 						$scope.map = new window.BMap.Map(ele);              // 创建地图实例 
 						$scope.geoc = new BMap.Geocoder();                  // 创建地址解析器实例 
 
-						//console.log($scope.model)
+						console.log($scope.model)
 
 						if($scope.model.local_position){
 							mapInit($scope.model.local_position.cityName)   //有默认地址
@@ -102,7 +108,7 @@ define(['angular'],function (angular) {
 							myCity.get(function (result) {
 								
 								var cityName = result.name;
-								console.log("当前定位城市:"+cityName);
+								//console.log("当前定位城市:"+cityName);
 								mapInit(cityName)
 							})
 						}
@@ -195,50 +201,150 @@ define(['angular'],function (angular) {
 					})
 					
 
-					/*$scope.model.point = new BMap.Point(120.071688,29.306353);   // 创建点坐标 
-					console.log($scope.model.point);
-					map.centerAndZoom($scope.model.point, 19);                  // 初始化地图，设置中心点坐标和地图级别  
-					//======== 添加地图控件 =======											
-					map.addControl(new BMap.MapTypeControl());     // 地图类型控件，默认位于地图右上方。
-					map.addControl(new BMap.NavigationControl());  // 地图平移缩放控件，
-					map.addControl(new BMap.ScaleControl());       // 比例尺控件，默认位于地图左下方，显示地图的比例关系。
-					map.addControl(new BMap.OverviewMapControl()); //缩略地图控件，默认位于地图右下方，是一个可折叠的缩略地图。
-					map.enableScrollWheelZoom();
-
-
-					var marker = new BMap.Marker($scope.model.point);      // 创建标注    
 					
-					marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-
-					var geoc = new BMap.Geocoder(); 
-
-					console.log($scope)
-					map.addEventListener("click",function(e){
-
-						marker.setPosition(e.point)
-
-
-						geoc.getLocation(e.point, function(rs){
-							var addComp = rs.addressComponents;
-							console.log(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-						});  
-						console.log(e.point)
-						console.log(e.point.lng + "," + e.point.lat);
-						console.log(map.getCenter())
-					});
-
-
-					function myFun(result){
-						console.log(result)
-						var cityName = result.name;
-						map.setCenter(cityName);
-						console.log("当前定位城市:"+cityName);
-					}
-					var myCity = new BMap.LocalCity();
-					myCity.get(myFun);*/
 				})
 			}
 		};
+	}])
+	
+	//员工定位
+	.directive('mapEmployeePosition', ['$q','$timeout', function($q,$timeout){
+		// Runs during compile
+		return {
+			// name: '',
+			// priority: 1,
+			// terminal: true,
+			 scope: {
+			 	cityName:'@',
+			 	refreshTime:'@',
+			 	model:'='
+			 }, // {} = isolate, true = child, false/undefined = no change
+			controller: function($scope, $element, $attrs, $transclude) {
+
+			},
+			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+			 restrict: 'AE', // E = Element, A = Attribute, C = Class, M = Comment
+			// template: '',
+			templateUrl: 'templates/Bmap.html',
+			// replace: true,
+			// transclude: true,
+			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+			link: function($scope, iElm, iAttrs, controller) {
+				var isInit = true;
+
+				function loadMapSuccess() {
+					var ele = document.getElementById('baidu_map');
+
+					creatMap(ele).then(initMarker)
+				
+				}
+
+				//新建地图
+				function creatMap(ele) {
+					var deferred = $q.defer(),
+						map = new window.BMap.Map(ele),  // 创建地图实例 
+						geoc =  new BMap.Geocoder();     // 创建地址解析器实例
+
+					if($scope.cityName){
+						map.centerAndZoom($scope.cityName,15)
+						map.enableScrollWheelZoom(true);
+						deferred.resolve(map)
+					}else{
+						var myCity =  new BMap.LocalCity();  //根据ip获取当前城市
+						myCity.get(function (result) {
+
+							var cityName = result.name;
+							console.log("当前定位城市:"+cityName);
+							//mapInit(cityName)
+							map.centerAndZoom(cityName,15)  //初始化
+							map.enableScrollWheelZoom(true);
+							deferred.resolve(map)
+						})
+					}
+					
+					
+
+					return deferred.promise;
+
+				}
+
+				$scope.makers=[]
+				
+				//初始化标注
+				function initMarker(map) {
+					//console.log(map)
+					isInit = true
+					var watch = $scope.$watch('model', function(newValue, oldValue, scope) {
+						if(angular.isArray(newValue)){
+							angular.forEach(newValue, function(value, key){
+								$scope.makers[key] = {};
+								angular.extend($scope.makers[key], value)
+
+								var point = new BMap.Point(value.lon, value.lat);
+								var marker = $scope.makers[key].marker = new BMap.Marker(point);
+
+								map.addOverlay(marker)
+
+								/*var opts = {
+									width : 200,     // 信息窗口宽度
+									height: 100,     // 信息窗口高度
+									title : "海底捞王府井店" , // 信息窗口标题
+									enableMessage:true,//设置允许信息窗发送短息
+									message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+								}*/
+								value.headImg = value.headImg.replace('/upfile','/mfs')
+									console.log(value)
+								var sContent = '<div class="media">'+
+												  '<div class="media-left">'+
+												   '<a href="jiavascript:void(0)">'+
+												      '<img class="media-object" style="width:120px;" src="'+'/mfs/headImage/4a1c43e8c3b6483aac26127826669332-small.png'+'">'+
+												    '</a>'+
+												  '</div>'+
+												  '<div class="media-body">'+
+												    '<h4 class="media-heading">'+value.gcName+'</h4>'+
+												    '<p>电话: <span>'+value.tel+'</span></p>'+
+												  '</div>'+
+												'</div>'
+								var infoWindow = new BMap.InfoWindow(sContent);//创建信息窗口对象
+
+								marker.addEventListener('click',function () {
+									this.openInfoWindow(infoWindow);//打开信息窗口
+									 //图片加载完毕重绘infowindow
+									
+								})
+
+
+							});
+							//console.log(newValue)
+							isInit = false;//初始化结束
+							watch()
+						}
+					},true);
+
+
+					
+
+				}
+				
+
+				$scope.$watch('model',function (newValue,oldValue,scope) {
+					if(isInit == false){
+						angular.forEach(newValue, function(value, key){
+							var point = new BMap.Point(value.lon, value.lat);
+							//var point = new BMap.Point(null,null)
+							$scope.makers[key].marker.setPosition(point)
+						});
+					}
+					
+				})
+
+				loadBaiduMaps($q,'1.4').then(loadMapSuccess)
+			}
+		};
 	}]);
+	
+
 });
+
+
 

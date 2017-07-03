@@ -22,6 +22,11 @@ define(function(){
 				"name":"app.states.contacts",
 				"files":["states/contacts-states"]
 			},
+			{
+				"reconfig":true,
+				"name":"app.states.employees",
+				"files":["states/employees-states"]
+			},
 			/*{
 				"reconfig":true,
 				"name":"app.states.courseDetail",
